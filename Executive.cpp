@@ -6,7 +6,6 @@
 #include "Blackjack.h"
 Executive::Executive()
 {
-  cout<<"hello";
   player = new Blackjack();
   dealer = new Blackjack();
   currentPlayer = 0; //The player0 is user and player1 is Dealer(ai)
@@ -30,8 +29,9 @@ void Executive::run()
   srand(time(NULL));
 
   //Turn phase
-  do{
-  continueGame = false;
+  continueGame = true;
+  while(continueGame == 1)
+  {
   player = new Blackjack();
   dealer = new Blackjack();
   currentPlayer = 0; //The player0 is user and player1 is Dealer(ai)
@@ -96,7 +96,7 @@ void Executive::run()
 	  
 	continueGame=contGame();
 
-  } while(continueGame == 1);
+  }
 
 
 }
@@ -173,7 +173,7 @@ void Executive::turnChange()
 
 bool Executive::contGame()
 {
-  int choice;
+  int choice=0;
   //cout<<"contGame\n";
   cout<<"\x1B[2J\x1B[H";
   cout<<"Wins: "<<wins<<"\nTies: "<<ties<<"\nLosses: "<<losses;
@@ -181,10 +181,10 @@ bool Executive::contGame()
   cout<<"\n\n\nDo you want to play annother round?\nyes(1) no(2): ";
   cin>>choice;
   if(choice == 1){
-    return 1;
+    return true;
   }
   else{
-    return 0;
+    return false;
   }
 }
 
